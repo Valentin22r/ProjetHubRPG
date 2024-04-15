@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c82rcjby04i01"]
+
+[ext_resource type="Script" path="res://Script/PlayerSpawner.gd" id="1_2lkp4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eklp8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g0y1d"]
+
+[node name="MapManager" type="Node3D"]
+
+[node name="PlayerSpawner" type="Node" parent="."]
+script = ExtResource("1_2lkp4")
+
+[node name="TMP" type="Node" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TMP"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.543219, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TMP/StaticBody3D"]
+mesh = SubResource("BoxMesh_eklp8")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TMP/StaticBody3D"]
+shape = SubResource("BoxShape3D_g0y1d")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="TMP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.952078, 0)
+omni_range = 12.6762

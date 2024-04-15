@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwnitseps043b"]
+
+[ext_resource type="Script" path="res://Script/CharactereController.gd" id="1_n6d88"]
+[ext_resource type="Script" path="res://Script/CameraController.gd" id="2_5ct8a"]
+[ext_resource type="Texture2D" uid="uid://dcmbvoyji1krk" path="res://Materials/Color/Brown.png" id="3_72l5u"]
+[ext_resource type="Texture2D" uid="uid://c3bshu18cljb6" path="res://Materials/Sprite/heart.png" id="4_7xyco"]
+[ext_resource type="Script" path="res://Script/LifeDisplayer.gd" id="5_i2sab"]
+[ext_resource type="Script" path="res://Script/NameDisplayer.gd" id="6_ot866"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_36q03"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_led40"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ejta2"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_n6d88")
+
+[node name="Camera" type="Node3D" parent="."]
+script = ExtResource("2_5ct8a")
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0235104, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_36q03")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_led40")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ejta2")
+
+[node name="ATH" type="Node2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="ATH"]
+position = Vector2(138, 1011.5)
+scale = Vector2(0.244792, 0.223765)
+texture = ExtResource("3_72l5u")
+
+[node name="Heart" type="Sprite2D" parent="ATH"]
+top_level = true
+position = Vector2(209.594, 1041.78)
+scale = Vector2(0.180035, 0.181471)
+texture = ExtResource("4_7xyco")
+
+[node name="Life" type="RichTextLabel" parent="ATH"]
+offset_left = 8.0
+offset_top = 1010.0
+offset_right = 164.0
+offset_bottom = 1070.0
+theme_override_font_sizes/normal_font_size = 43
+script = ExtResource("5_i2sab")
+
+[node name="Name" type="RichTextLabel" parent="ATH"]
+offset_left = 8.0
+offset_top = 950.0
+offset_right = 270.0
+offset_bottom = 998.0
+theme_override_font_sizes/normal_font_size = 19
+script = ExtResource("6_ot866")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

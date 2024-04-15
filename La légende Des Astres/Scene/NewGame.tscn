@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwv6tn7k3tpbd"]
+
+[ext_resource type="Script" path="res://Script/InputName.gd" id="1_cxdoc"]
+[ext_resource type="Script" path="res://Script/Play.gd" id="1_g7uk6"]
+
+[node name="NewGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1404.0
+offset_top = 824.0
+offset_right = 1528.0
+offset_bottom = 855.0
+script = ExtResource("1_g7uk6")
+
+[node name="Play" type="Button" parent="Play"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="TakeName" type="Node" parent="."]
+
+[node name="Input" type="TextEdit" parent="TakeName"]
+offset_left = -271.0
+offset_top = -145.0
+offset_right = 36.0
+offset_bottom = -109.0
+theme_override_colors/background_color = Color(0.25098, 0.25098, 0.25098, 1)
+deselect_on_focus_loss_enabled = false
+script = ExtResource("1_cxdoc")
+
+[node name="Text" type="RichTextLabel" parent="TakeName"]
+offset_left = -340.0
+offset_top = -140.0
+offset_right = -275.0
+offset_bottom = -100.0
+text = "NAME :"
+
+[connection signal="pressed" from="Play/Play" to="Play" method="_on_play_pressed"]
+[connection signal="pressed" from="Play/Play" to="TakeName/Input" method="_on_play_pressed"]
